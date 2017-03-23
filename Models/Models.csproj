@@ -41,8 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Album.cs" />
-    <Compile Include="Artiste.cs" />
-    <Compile Include="Avis.cs" />
+    <Compile Include="Artist.cs" />
+    <Compile Include="Review.cs" />
     <Compile Include="Commande.cs" />
     <Compile Include="Titre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

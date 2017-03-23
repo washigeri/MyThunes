@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    class Artiste
+    class Artist
     {
+        public string Name { get; set; }
+        //public List<Album> Albums { get; set; }
     }
 }
