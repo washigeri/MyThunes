@@ -1,0 +1,40 @@
+Musique (une musique)
+-album
+-titre
+-artiste
+-Date de sortie
+-Genre
+-Prix
+-Formats
+-notes
+-commentaires
+-chemin d'accès
+
+Album
+-Nom
+-jaquette
+-date
+-artiste
+-liste de musiques
+-genre
+-prix
+-notes
+-commentaires
+
+Artiste
+-Nom
+-Liste d'albums, titres ...
+
+Commande
+-numero
+-date
+-acheteur
+-quoi
+-prix
+
+Avis
+-note
+-commentaire
+-date
+-sujet
+-auteur
