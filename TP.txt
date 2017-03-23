@@ -1,0 +1,26 @@
+Groupe de 2
+
+- Site web marchand d'achat de musique
+
+Front-End
+
+- Rechercher une musique (filtres multicritères)
+- Afficher les informations d'un morceau
+- Ecouter un extrait de morceau
+- Commander un morceau / album
+- Télécharger un morceau
+- Consulter l'historique des commandes
+- Commenter & noter un morceau
+
+Back-End
+
+- Système d'authentification (Bonus pour de l'authentification Facebook / Google)
+- Gérer la bibliothèque de musique (Ajout, modification, suppression)
+
+Format d'un morceau
+- Artiste
+- Album
+- Date de sortie
+- Genre
+- Prix
+- Format(s) proposé(s)
