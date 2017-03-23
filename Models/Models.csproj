@@ -43,8 +43,8 @@
     <Compile Include="Album.cs" />
     <Compile Include="Artiste.cs" />
     <Compile Include="Avis.cs" />
-    <Compile Include="Commande.cs" />
-    <Compile Include="Titre.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="Song.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
