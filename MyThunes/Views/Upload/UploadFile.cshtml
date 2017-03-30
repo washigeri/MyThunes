@@ -8,8 +8,8 @@
 {
 
     <div>
-        @Html.TextBox("file", "", new { type = "file" }) <br />
-
+        @*@Html.TextBox("file", "", new { type = "file", multiple}) <br />*@
+        <input type="file" name="file" multiple />
         <input type="submit" value="Upload" />
 
         @ViewBag.Message
