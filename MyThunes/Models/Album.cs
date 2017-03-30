@@ -10,12 +10,12 @@ namespace MyThunes.Models
 {
     public class Album
     {
-        //[Key]
+        [Key]
         public int ID { get; set; }
         public String Name { get; set; }
         public String Cover { get; set; }
         public DateTime Date { get; set; }
-        //[ForeignKey("Artist")]
+        [ForeignKey("Artist")]
         public int ArtistID { get; set; }
         public virtual Artist Artist { get; set; }
         public virtual ICollection<Song> Songs { get; set; }

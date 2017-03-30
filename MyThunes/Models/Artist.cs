@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MyThunes.Models
 {
-   public class Artist
+    public class Artist
     {
-        //[Key]
+        [Key]
         public int ID { get; set; }
         public string Name { get; set; }
         public virtual ICollection<Album> Albums { get; set; }

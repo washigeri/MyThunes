@@ -11,7 +11,7 @@ namespace MyThunes.Models
     public class Song
     {
 
-        //[Key]
+        [Key]
         public int ID { get; set; }
         public String Name { get; set; }
         public DateTime ReleaseDate { get; set; }
@@ -19,7 +19,7 @@ namespace MyThunes.Models
         public int Price { get; set; }
         public String Format { get; set; }
         public String Path { get; set; }
-        //[ForeignKey("Album")]
+        [ForeignKey("Album")]
         public int AlbumID { get; set; }
         public virtual Album Album { get; set; }
 
