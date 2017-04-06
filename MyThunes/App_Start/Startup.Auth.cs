@@ -45,7 +45,6 @@ namespace MyThunes
             // Ceci est similaire à l'option RememberMe quand vous vous connectez.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-            // Supprimer les commentaires des lignes suivantes pour autoriser la connexion avec des fournisseurs de connexions tiers
             //app.UseMicrosoftAccountAuthentication(
             //    clientId: "",
             //    clientSecret: "");
@@ -54,15 +53,15 @@ namespace MyThunes
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1186807254778000",
+               appSecret: "4de863e3b1032c9103ef835bb70db15f");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "296926486744-tpsqhqa7159v0rubij4hq537ocr4phtq.apps.googleusercontent.com",
+                ClientSecret = "N0rVSl8e8QxNotiQ_X29LiAX"
+            });
         }
     }
 }
