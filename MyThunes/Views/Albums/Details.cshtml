@@ -26,20 +26,15 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cover)
-        </dt>
+       
 
-        <dd>
-            @Html.DisplayFor(model => model.Cover)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Date)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
+        <dd>asp.n
+            @String.Format("{0:dd/MM/yyyy}", Model.Date)
         </dd>
 
         <dt>
@@ -57,6 +52,12 @@
         <dd>
             @Html.DisplayFor(model => model.Price)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cover)
+        </dt>
+        <dd>
+            <img src="@Url.Content("/" + Model.Cover)" class="img-responsive" alt="Image"/>
+        </dd>
 
     </dl>
 </div>
@@ -64,3 +65,22 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading"> Laisser un avis...</div>
+        <div class="panel-body">
+            @Html.Action("Create", "Reviews")
+        </div>
+        @{int i = 1; }
+            @foreach (var review in Model.Reviews)
+            {
+            <div class="panel-heading"> Commentaire @i</div>
+                i++;
+            <div class="panel-body">
+                @{Html.RenderPartial("~/Views/Reviews/_Details.cshtml", review);}
+            </div>
+                }
+            
+    </div>
+</div>

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyThunes.Models
 {
@@ -12,16 +8,24 @@ namespace MyThunes.Models
     {
         [Key]
         public int ID { get; set; }
+
+        [Required, Range(0,10)]
         public int Note { get; set; }
+
+        [Display(Name = "Avis"), StringLength(500)]
         public string Comment { get; set; }
+
+        [Required, DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
-        [ForeignKey("Album")]
+
+        [ForeignKey("Album"), Display(Name = "Album")]
         public int AlbumID { get; set; }
+
         public virtual Album Album { get; set; }
-        //[ForeignKey("ApplicationUser")]
-        //public int UserID { get; set; }
-        //public virtual ApplicationUser Author { get; set; }
 
+        [Required, Display(Name = "Auteur")]
+        public int UserID { get; set; }
+
+        //#public virtual ApplicationUser Author { get; set; }
     }
-
 }

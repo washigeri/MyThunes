@@ -14,33 +14,33 @@ namespace MyThunes.Controllers
     {
         private MyThunesDbContext db = new MyThunesDbContext();
 
-        // GET: Reviews
-        public ActionResult Index()
-        {
-            var reviews = db.Reviews.Include(r => r.Album);
-            return View(reviews.ToList());
-        }
+        //// GET: Reviews
+        //public ActionResult Index()
+        //{
+        //    var reviews = db.Reviews.Include(r => r.Album);
+        //    return View(reviews.ToList());
+        //}
 
         // GET: Reviews/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Review review = db.Reviews.Find(id);
-            if (review == null)
-            {
-                return HttpNotFound();
-            }
-            return View(review);
-        }
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Review review = db.Reviews.Find(id);
+        //    if (review == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(review);
+        //}
 
         // GET: Reviews/Create
         public ActionResult Create()
         {
             ViewBag.AlbumID = new SelectList(db.Albums, "ID", "Name");
-            return View();
+            return View("_Create");
         }
 
         // POST: Reviews/Create
@@ -48,13 +48,14 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Note,Comment,Date,AlbumID")] Review review)
+        public ActionResult Create([Bind(Include = "ID,Note,Comment,AlbumID")] Review review)
         {
+            review.Date = DateTime.Today;
             if (ModelState.IsValid)
             {
                 db.Reviews.Add(review);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Albums", new { id = review.AlbumID });
             }
 
             ViewBag.AlbumID = new SelectList(db.Albums, "ID", "Name", review.AlbumID);

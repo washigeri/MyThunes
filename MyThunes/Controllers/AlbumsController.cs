@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyThunes.Models;
+using System.IO;
 
 namespace MyThunes.Controllers
 {
@@ -48,10 +49,17 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Cover,Date,ArtistID,Genre,Price")] Album album)
+        public ActionResult Create([Bind(Include = "ID,Name,Date,ArtistID,Genre,Price")] Album album, HttpPostedFileBase cover)
         {
             if (ModelState.IsValid)
             {
+                if (cover != null && cover.ContentLength > 0 && cover.ContentType.Split('/')[0] == "image")
+                {
+                    var fileName = "alb_" + ((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds).ToString() + "_" + album.Name + Path.GetExtension(cover.FileName);
+                    album.Cover = "Uploads/Album/" + fileName;
+                    string path = Path.Combine(Server.MapPath("~/Uploads/Album"), fileName);
+                    cover.SaveAs(path);
+                }
                 db.Albums.Add(album);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,10 +90,17 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Cover,Date,ArtistID,Genre,Price")] Album album)
+        public ActionResult Edit([Bind(Include = "ID,Name,Date,ArtistID,Genre,Price")] Album album, HttpPostedFileBase cover)
         {
             if (ModelState.IsValid)
             {
+                if (cover != null && cover.ContentLength > 0 && cover.ContentType.Split('/')[0] == "image")
+                {
+                    var fileName = "alb_" + ((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds).ToString() + "_" + album.Name + Path.GetExtension(cover.FileName);
+                    album.Cover = "Uploads/Album/" + fileName;
+                    string path = Path.Combine(Server.MapPath("~/Uploads/Album"), fileName);
+                    cover.SaveAs(path);
+                }
                 db.Entry(album).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -115,6 +130,11 @@ namespace MyThunes.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Album album = db.Albums.Find(id);
+            string fullPath = Path.Combine(Server.MapPath("~/Uploads/Album"), album.Cover.Split('/')[2]);
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
             db.Albums.Remove(album);
             db.SaveChanges();
             return RedirectToAction("Index");

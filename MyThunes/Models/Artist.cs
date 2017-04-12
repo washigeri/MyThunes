@@ -8,7 +8,9 @@ namespace MyThunes.Models
     {
         [Key]
         public int ID { get; set; }
+        [StringLength(60), Required, Display(Name = "Nom")]
         public string Name { get; set; }
+        [Display(Name = "Albums")]
         public virtual ICollection<Album> Albums { get; set; }
         public String Photo { get; set; }
     }
