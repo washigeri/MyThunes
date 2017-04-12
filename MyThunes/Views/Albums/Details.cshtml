@@ -86,11 +86,7 @@
         @foreach (var review in Model.Reviews)
             {
             <div class="panel-heading">
-                Commentaire @i
-                <div class="pull-right">
-                    @Html.Action("Delete", "Reviews", new { id = review.ID })
-                </div>
-            </div>
+                Commentaire @i   </div>
             i++;
             <div class="panel-body">
                 @{Html.RenderPartial("~/Views/Reviews/_Details.cshtml", review);}
