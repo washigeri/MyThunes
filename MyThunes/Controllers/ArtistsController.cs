@@ -1,4 +1,5 @@
 ﻿using MyThunes.Models;
+using System;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
@@ -50,7 +51,7 @@ namespace MyThunes.Controllers
             {
                 if (file != null && file.ContentLength > 0 && file.ContentType.Split('/')[0] == "image")
                 {
-                    var fileName = "img_" + artist.ID.ToString() + "_" + artist.Name + Path.GetExtension(file.FileName);
+                    var fileName = "img_" + ((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds).ToString() + "_" + artist.Name + Path.GetExtension(file.FileName);
                     artist.Photo = "Uploads/Artist/" + fileName;
                     string path = Path.Combine(Server.MapPath("~/Uploads/Artist"), fileName);
                     file.SaveAs(path);
@@ -85,10 +86,17 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Photo")] Artist artist)
+        public ActionResult Edit([Bind(Include = "ID,Name")] Artist artist, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null && file.ContentLength > 0 && file.ContentType.Split('/')[0] == "image")
+                {
+                    var fileName = "img_" + artist.ID.ToString() + "_" + artist.Name + Path.GetExtension(file.FileName);
+                    artist.Photo = "Uploads/Artist/" + fileName;
+                    string path = Path.Combine(Server.MapPath("~/Uploads/Artist"), fileName);
+                    file.SaveAs(path);
+                }
                 db.Entry(artist).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -117,6 +125,11 @@ namespace MyThunes.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Artist artist = db.Artists.Find(id);
+            string fullPath = Path.Combine(Server.MapPath("~/Uploads/Artist"), artist.Photo.Split('/')[2]);
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
             db.Artists.Remove(artist);
             db.SaveChanges();
             return RedirectToAction("Index");
