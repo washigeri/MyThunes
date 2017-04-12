@@ -72,7 +72,7 @@
 <div>
     <h3>Try it !</h3>
     <audio controls>
-        <source src="@Url.Action("Play", "Songs", new { musicPath = Model.Path })" type="audio/mp3" />
+        <source src="@Url.Content("/" + Model.Path)" type="audio/mp3" />
         <p>Your browser does not support HTML 5 audio element</p>
     </audio>
 </div>

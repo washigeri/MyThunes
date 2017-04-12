@@ -161,10 +161,10 @@ namespace MyThunes.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult Play(string musicPath)
-        {
-            var file = Server.MapPath("~/Uploads/Song/" + musicPath.ToString() + ".mp3");
-            return File(file, "audio/mp3");
-        }
+        //public ActionResult Play(string musicPath)
+        //{
+        //    var file = Server.MapPath("~/Uploads/Song/" + musicPath.ToString() + ".mp3");
+        //    return File(file, "audio/mp3");
+        //}
     }
 }
