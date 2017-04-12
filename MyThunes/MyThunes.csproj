@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -177,6 +178,10 @@
     <Compile Include="Migrations\201703300958206_InitialCreate.cs" />
     <Compile Include="Migrations\201703300958206_InitialCreate.Designer.cs">
       <DependentUpon>201703300958206_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703301252091_keys.cs" />
+    <Compile Include="Migrations\201703301252091_keys.Designer.cs">
+      <DependentUpon>201703301252091_keys.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -253,9 +258,15 @@
     <Content Include="Views\Artists\Details.cshtml" />
     <Content Include="Views\Artists\Edit.cshtml" />
     <Content Include="Views\Artists\Index.cshtml" />
+    <Content Include="Views\Albums\Create.cshtml" />
+    <Content Include="Views\Albums\Delete.cshtml" />
+    <Content Include="Views\Albums\Details.cshtml" />
+    <Content Include="Views\Albums\Edit.cshtml" />
+    <Content Include="Views\Albums\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\Artist\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
@@ -269,6 +280,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703300958206_InitialCreate.resx">
       <DependentUpon>201703300958206_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703301252091_keys.resx">
+      <DependentUpon>201703301252091_keys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

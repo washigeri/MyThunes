@@ -11,7 +11,7 @@ namespace MyThunes.Models
 {
     public class Order
     {
-        //[Key]
+        [Key]
         public int ID { get; set; }
         public int Number { get; set; }
         public DateTime BuyDate { get; set; }
@@ -19,7 +19,7 @@ namespace MyThunes.Models
         //[ForeignKey("ApplicationUser")]
         //public int UserID { get; set; }
         //public virtual ApplicationUser User { get; set; }
-        public virtual ICollection<Album> Content { get; set; }
+        public  List<Album> Content { get; set; }
 
     }
 }

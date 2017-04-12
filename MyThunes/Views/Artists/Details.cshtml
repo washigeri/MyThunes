@@ -23,8 +23,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Photo)
-        </dd>
+            <img src="@Url.Content( "/" + Model.Photo) " class="img-rounded" alt="Image"/>
 
     </dl>
 </div>

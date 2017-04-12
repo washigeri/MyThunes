@@ -10,12 +10,12 @@ namespace MyThunes.Models
 {
     public class Review
     {
-        //[Key]
+        [Key]
         public int ID { get; set; }
         public int Note { get; set; }
         public string Comment { get; set; }
         public DateTime Date { get; set; }
-        //[ForeignKey("Album")]
+        [ForeignKey("Album")]
         public int AlbumID { get; set; }
         public virtual Album Album { get; set; }
         //[ForeignKey("ApplicationUser")]
