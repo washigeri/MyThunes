@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using MyThunes.Models;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MyThunes.Models;
-using MyThunes.Uploaders;
-using System.IO;
 
 namespace MyThunes.Controllers
 {
@@ -44,24 +40,22 @@ namespace MyThunes.Controllers
         }
 
         // POST: Artists/Create
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( [Bind(Include = "ID,Name,Photo")] Artist artist, HttpPostedFile artistImage)
+        public ActionResult Create([Bind(Include = "ID,Name")] Artist artist, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                if(true)
+                if (file != null && file.ContentLength > 0 && file.ContentType.Split('/')[0] == "image")
                 {
-                    //HttpPostedFileBase artistImage = Request.Files[0];
-                    if (artistImage.ContentLength > 0)
-                    {
-                        var fileName = "img_" + artist.ID.ToString() + "_" + artist.Name;
-                        artist.Photo = Path.Combine(Server.MapPath("~/Uploads/Artist"), fileName);
-                        artistImage.SaveAs(artist.Photo);
-                    }
+                    var fileName = "img_" + artist.ID.ToString() + "_" + artist.Name + Path.GetExtension(file.FileName);
+                    artist.Photo = "Uploads/Artist/" + fileName;
+                    string path = Path.Combine(Server.MapPath("~/Uploads/Artist"), fileName);
+                    file.SaveAs(path);
                 }
+
                 db.Artists.Add(artist);
 
                 db.SaveChanges();
@@ -87,7 +81,7 @@ namespace MyThunes.Controllers
         }
 
         // POST: Artists/Edit/5
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
+        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
