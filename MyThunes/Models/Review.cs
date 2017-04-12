@@ -25,7 +25,5 @@ namespace MyThunes.Models
 
         [Required, Display(Name = "Auteur")]
         public int UserID { get; set; }
-
-        //#public virtual ApplicationUser Author { get; set; }
     }
 }
