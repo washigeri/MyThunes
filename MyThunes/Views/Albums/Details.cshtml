@@ -26,14 +26,12 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
 
-       
-
-
         <dt>
             @Html.DisplayNameFor(model => model.Date)
         </dt>
 
-        <dd>asp.n
+        <dd>
+            asp.n
             @String.Format("{0:dd/MM/yyyy}", Model.Date)
         </dd>
 
@@ -56,9 +54,8 @@
             @Html.DisplayNameFor(model => model.Cover)
         </dt>
         <dd>
-            <img src="@Url.Content("/" + Model.Cover)" class="img-responsive" alt="Image"/>
+            <img src="@Url.Content("/" + Model.Cover)" class="img-responsive" alt="Image" />
         </dd>
-
     </dl>
 </div>
 <p>
@@ -68,19 +65,36 @@
 
 <div class="panel-group">
     <div class="panel panel-default">
+        @{ int counter = 0;}
+        @if (Model.Reviews.Count == 0)
+        {
+            <p>Soyez le premier à laisser un avis !</p>
+        }
+        else
+        {
+            foreach (var model in Model.Reviews)
+            {
+                counter += model.Note;
+            }
+            <h3>Note : @(counter / Model.Reviews.Count) / 10</h3>
+        }
         <div class="panel-heading"> Laisser un avis...</div>
         <div class="panel-body">
             @Html.Action("Create", "Reviews")
         </div>
         @{int i = 1; }
-            @foreach (var review in Model.Reviews)
+        @foreach (var review in Model.Reviews)
             {
-            <div class="panel-heading"> Commentaire @i</div>
-                i++;
+            <div class="panel-heading">
+                Commentaire @i
+                <div class="pull-right">
+                    @Html.Action("Delete", "Reviews", new { id = review.ID })
+                </div>
+            </div>
+            i++;
             <div class="panel-body">
                 @{Html.RenderPartial("~/Views/Reviews/_Details.cshtml", review);}
             </div>
-                }
-            
+                    }
     </div>
 </div>
