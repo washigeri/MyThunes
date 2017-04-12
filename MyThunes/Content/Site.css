@@ -22,19 +22,3 @@ select,
 textarea {
     max-width: 280px;
 }
-
-#musicPlayer > audio {
-    width: 100%
-}
-/* Chrome 29+ */
-@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
-    /* HIDE DOWNLOAD AUDIO BUTTON */
-    #musicPlayer {
-        overflow: hidden;
-        width: 390px;
-    }
-
-    #musicPlayer > audio {
-        width: 420px;
-    }
-} 
