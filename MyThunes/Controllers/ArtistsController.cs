@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyThunes.Models;
+using MyThunes.Uploaders;
+using System.IO;
 
 namespace MyThunes.Controllers
 {
@@ -46,11 +48,22 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Photo")] Artist artist)
+        public ActionResult Create( [Bind(Include = "ID,Name,Photo")] Artist artist, HttpPostedFile artistImage)
         {
             if (ModelState.IsValid)
             {
+                if(true)
+                {
+                    //HttpPostedFileBase artistImage = Request.Files[0];
+                    if (artistImage.ContentLength > 0)
+                    {
+                        var fileName = "img_" + artist.ID.ToString() + "_" + artist.Name;
+                        artist.Photo = Path.Combine(Server.MapPath("~/Uploads/Artist"), fileName);
+                        artistImage.SaveAs(artist.Photo);
+                    }
+                }
                 db.Artists.Add(artist);
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
