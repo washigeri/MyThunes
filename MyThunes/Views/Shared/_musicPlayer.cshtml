@@ -4,9 +4,9 @@
 
 <h2>_musicPlayer</h2>
 
-<audio id="musicPlayer" controls="controls" autoplay="autoplay" loop="loop" preload="auto">
-   <source src="~/UploadedFiles/Rick Astley - Never Gonna Give You Up.mp3" type="audio/mp3" />
- @*<source src="@ViewBag.MusicPath" type="audio/mp3"/>*@
+<audio id="musicPlayer" controls="controls">
+   @*<source src="~/UploadedFiles/Rick Astley - Never Gonna Give You Up.mp3" type="audio/mp3" />*@
+    <source src="model.Path" type="audio/mp3"/>
    Navigateur incompatible.
 </audio>
 
