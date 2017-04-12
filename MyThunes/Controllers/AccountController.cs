@@ -79,6 +79,7 @@ namespace MyThunes.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    MigrateShoppingCart(model.Email);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -155,6 +156,7 @@ namespace MyThunes.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    MigrateShoppingCart(model.Email);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // Pour plus d'informations sur l'activation de la confirmation du compte et la réinitialisation du mot de passe, consultez http://go.microsoft.com/fwlink/?LinkID=320771
@@ -421,6 +423,15 @@ namespace MyThunes.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        private void MigrateShoppingCart(string Email)
+        {
+            // Associate shopping cart items with logged-in user
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+
+            cart.MigrateCart(Email);
+            Session[ShoppingCart.CartSessionKey] = Email;
         }
 
         #region Applications auxiliaires
