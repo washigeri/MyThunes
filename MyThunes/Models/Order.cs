@@ -9,17 +9,22 @@ using System.Threading.Tasks;
 
 namespace MyThunes.Models
 {
-    public class Order
+    public partial class Order
     {
         [Key]
-        public int ID { get; set; }
-        public int Number { get; set; }
-        public DateTime BuyDate { get; set; }
-        public int TotalPrice { get; set; }
-        //[ForeignKey("ApplicationUser")]
-        //public int UserID { get; set; }
-        //public virtual ApplicationUser User { get; set; }
-        public  List<Album> Content { get; set; }
-
+        public int OrderId { get; set; }
+        public string Username { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string PostalCode { get; set; }
+        public string Country { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public decimal Total { get; set; }
+        public System.DateTime OrderDate { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; }
     }
 }
