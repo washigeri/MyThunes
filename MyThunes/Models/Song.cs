@@ -16,7 +16,7 @@ namespace MyThunes.Models
         public String Name { get; set; }
         public DateTime ReleaseDate { get; set; }
         public String Genre { get; set; }
-        public int Price { get; set; }
+        public Decimal Price { get; set; }
         public String Format { get; set; }
         public String Path { get; set; }
         [ForeignKey("Album")]

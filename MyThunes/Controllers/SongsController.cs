@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyThunes.Models;
+using System.IO;
 
 namespace MyThunes.Controllers
 {
@@ -15,10 +16,34 @@ namespace MyThunes.Controllers
         private MyThunesDbContext db = new MyThunesDbContext();
 
         // GET: Songs
-        public ActionResult Index()
+        public ActionResult Index(string song, string album, string artist, string genre)
         {
-            var songs = db.Songs.Include(s => s.Album);
-            return View(songs.ToList());
+            var songs = db.Songs.Include(s => s.Album).ToList();
+            var filteredSongs = db.Songs.Include(s => s.Album).ToList();
+            if (!string.IsNullOrEmpty(song))
+            {
+                filteredSongs = filteredSongs.Where(c => c.Name.Contains(song)).ToList();
+            }
+            if(!string.IsNullOrEmpty(album))
+            {
+                filteredSongs = filteredSongs.Where(c => c.Album.Name.Contains(album)).ToList();
+            }
+            if(!string.IsNullOrEmpty(artist))
+            {
+                filteredSongs = filteredSongs.Where(c => c.Album.Artist.Name.Contains(artist)).ToList();
+            }
+            if(!string.IsNullOrEmpty(genre))
+            {
+                filteredSongs = filteredSongs.Where(c => c.Genre == genre).ToList();
+            }
+            SongResponseVM songResponseVM = new SongResponseVM()
+            {
+                SongsCounter = songs.Count,
+                FilteredSongsCounter = filteredSongs.Count,
+                Songs = filteredSongs,
+                SongGenres = db.Songs.Select(c => c.Genre).Distinct().ToList()
+            };
+            return View(songResponseVM);
         }
 
         // GET: Songs/Details/5
@@ -48,16 +73,23 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,ReleaseDate,Genre,Price,Format,Path,AlbumID")] Song song)
+        public ActionResult Create([Bind(Include = "ID,Name,ReleaseDate,Genre,Price,Format,AlbumID")] Song song, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null && file.ContentLength > 0 && file.ContentType.Split('/')[0] == "audio")
+                {
+                    var fileName = "song_" + ((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds).ToString() + "_" + song.Name + Path.GetExtension(file.FileName);
+                    song.Path = "Uploads/Song/" + fileName;
+                    string path = Path.Combine(Server.MapPath("~/Uploads/Song"), fileName);
+                    file.SaveAs(path);
+                }
                 db.Songs.Add(song);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AlbumID = new SelectList(db.Albums, "ID", "Name", song.AlbumID);
+            //ViewBag.AlbumID = new SelectList(db.Albums, "ID", "Name", song.AlbumID);
             return View(song);
         }
 

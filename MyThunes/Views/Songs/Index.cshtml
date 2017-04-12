@@ -1,10 +1,23 @@
-﻿@model IEnumerable<MyThunes.Models.Song>
+﻿@model MyThunes.Models.SongResponseVM
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<br/>
+
+@using (Html.BeginForm("Index", "Songs", FormMethod.Get))
+{
+    <p>
+        Titre: @Html.TextBox("song")
+        Album: @Html.TextBox("album") 
+        Artiste : @Html.TextBox("artist")
+        Genre: @Html.DropDownList("genre", new SelectList(Model.SongGenres), "Tous les genres")
+        <input type="submit" value="Filtrer" class="btn btn-default"/>
+    </p>
+}
+
+<p>@Model.FilteredSongsCounter chansons correspondent aux critères</p>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,51 +25,33 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Album.Name)
+            Titre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Album
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
+            Artiste
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Genre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Format)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Path)
+            Genre
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Songs) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Album.Name)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ReleaseDate)
+            @Html.DisplayFor(modelItem => item.Album.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Album.Artist.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Genre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Format)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Path)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
