@@ -15,9 +15,10 @@ namespace MyThunes.Controllers
         private MyThunesDbContext db = new MyThunesDbContext();
 
         // GET: Orders
-        public ActionResult Index()
+        public ActionResult Index(string userEmail)
         {
-            return View(db.Orders.ToList());
+            List<Order> ordersList = db.Orders.Where(c => c.Email == userEmail).ToList();
+            return View(ordersList);
         }
 
         // GET: Orders/Details/5

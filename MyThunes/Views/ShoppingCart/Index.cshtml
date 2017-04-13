@@ -53,41 +53,45 @@
 </p>
 <div id="update-message">
 </div>
-<table>
-    <tr>
-        <th>
-            Album Name
-        </th>
-        <th>
-            Price (each)
-        </th>
-        <th>
-            Quantity
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in
-        Model.CartItems)
-    {
-        <tr id="row-@item.RecordId">
-            <td>
-                @Html.ActionLink(item.Album.Name, "Details", "Albums", new { id = item.AlbumId }, null)
-            </td>
-            <td>
-                @item.Album.Price
-            </td>
-            <td id="item-count-@item.RecordId">
-                @item.Count
-            </td>
-            <td>
-                <a href="#" class="RemoveLink"
-                   data-id="@item.RecordId">
-                    Remove
-                    from cart
-                </a>
-            </td>
+<table class="table">
+    <thead ="thead-default">
+        <tr>
+            <th>
+                Album Name
+            </th>
+            <th>
+                Price 
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th></th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in
+            Model.CartItems)
+        {
+            <tr id="row-@item.RecordId">
+                <td>
+                    @Html.ActionLink(item.Album.Name, "Details", "Albums", new { id = item.AlbumId }, null)
+                </td>
+                <td>
+                    @item.Album.Price
+                </td>
+                <td id="item-count-@item.RecordId">
+                    @item.Count
+                </td>
+                <td>
+                    <a href="#" class="RemoveLink"
+                       data-id="@item.RecordId">
+                        Remove
+                        from cart
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
     <tr>
         <td>
             Total
