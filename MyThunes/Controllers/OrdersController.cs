@@ -15,6 +15,7 @@ namespace MyThunes.Controllers
         private MyThunesDbContext db = new MyThunesDbContext();
 
         // GET: Orders
+        [Authorize]
         public ActionResult Index(string userEmail)
         {
             List<Order> ordersList = db.Orders.Where(c => c.Email == userEmail).ToList();
@@ -22,6 +23,7 @@ namespace MyThunes.Controllers
         }
 
         // GET: Orders/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
