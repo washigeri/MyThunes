@@ -14,6 +14,7 @@ namespace MyThunes.Models
         [Key]
         public int ID { get; set; }
         public String Name { get; set; }
+        [Required, DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
         public String Genre { get; set; }
         public Decimal Price { get; set; }

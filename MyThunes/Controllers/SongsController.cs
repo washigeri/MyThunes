@@ -114,10 +114,17 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,ReleaseDate,Genre,Price,Format,Path,AlbumID")] Song song)
+        public ActionResult Edit([Bind(Include = "ID,Name,ReleaseDate,Genre,Price,Format,Path,AlbumID")] Song song, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null && file.ContentLength > 0 && file.ContentType.Split('/')[0] == "audio")
+                {
+                    var fileName = "song_" + ((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds).ToString() + "_" + song.Name + Path.GetExtension(file.FileName);
+                    song.Path = "Uploads/Song/" + fileName;
+                    string path = Path.Combine(Server.MapPath("~/Uploads/Song"), fileName);
+                    file.SaveAs(path);
+                }
                 db.Entry(song).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -147,6 +154,11 @@ namespace MyThunes.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Song song = db.Songs.Find(id);
+            string fullPath = Path.Combine(Server.MapPath("~"), song.Path);
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
             db.Songs.Remove(song);
             db.SaveChanges();
             return RedirectToAction("Index");
