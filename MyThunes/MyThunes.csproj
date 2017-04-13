@@ -175,6 +175,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\SongsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -195,6 +196,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\SearchResponseVM.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Models\SongResponseVM.cs" />
@@ -285,6 +287,7 @@
     <Content Include="Views\Checkout\Complete.cshtml" />
     <Content Include="Views\Reviews\_Create.cshtml" />
     <Content Include="Views\Reviews\_Details.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\ShoppingCart\CartSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>

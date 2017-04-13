@@ -1,0 +1,115 @@
+﻿@model MyThunes.Models.SearchResponseVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Chansons</h3>
+@if (Model.SongsCounter > 0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                Titre
+            </th>
+            <th>
+                Album
+            </th>
+            <th>
+                Artiste
+            </th>
+            <th>
+                Genre
+            </th>
+        </tr>
+
+        @foreach(var item in Model.Songs)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Album.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Album.Artist.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td style="text-align:right">
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+        }
+    </table>
+}
+
+<h3>Albums</h3>
+@if (Model.AlbumsCounter > 0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                Titre
+            </th>
+            <th>
+                Artiste
+            </th>
+            <th>
+                Genre
+            </th>
+        </tr>
+
+        @foreach(var item in Model.Albums)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Artist.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td style="text-align:right">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+<h3>Artistes</h3>
+@if (Model.ArtistsCounter > 0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                Nom
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Artists)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td style="text-align:right">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+
