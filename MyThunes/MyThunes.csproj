@@ -180,33 +180,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704122302583_InitialCreate.cs" />
-    <Compile Include="Migrations\201704122302583_InitialCreate.Designer.cs">
-      <DependentUpon>201704122302583_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704122314480_Decimal.cs" />
-    <Compile Include="Migrations\201704122314480_Decimal.Designer.cs">
-      <DependentUpon>201704122314480_Decimal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704130732295_liaison_user_order.cs" />
-    <Compile Include="Migrations\201704130732295_liaison_user_order.Designer.cs">
-      <DependentUpon>201704130732295_liaison_user_order.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704130747572_liaison_user_order1.cs" />
-    <Compile Include="Migrations\201704130747572_liaison_user_order1.Designer.cs">
-      <DependentUpon>201704130747572_liaison_user_order1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704130803482_liaison_user_order_delete.cs" />
-    <Compile Include="Migrations\201704130803482_liaison_user_order_delete.Designer.cs">
-      <DependentUpon>201704130803482_liaison_user_order_delete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704130915315_email_rpl_id.cs" />
-    <Compile Include="Migrations\201704130915315_email_rpl_id.Designer.cs">
-      <DependentUpon>201704130915315_email_rpl_id.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704130927564_supression_email.cs" />
-    <Compile Include="Migrations\201704130927564_supression_email.Designer.cs">
-      <DependentUpon>201704130927564_supression_email.cs</DependentUpon>
+    <Compile Include="Migrations\201704130938215_Init.cs" />
+    <Compile Include="Migrations\201704130938215_Init.Designer.cs">
+      <DependentUpon>201704130938215_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -327,26 +303,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704122302583_InitialCreate.resx">
-      <DependentUpon>201704122302583_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704122314480_Decimal.resx">
-      <DependentUpon>201704122314480_Decimal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704130732295_liaison_user_order.resx">
-      <DependentUpon>201704130732295_liaison_user_order.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704130747572_liaison_user_order1.resx">
-      <DependentUpon>201704130747572_liaison_user_order1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704130803482_liaison_user_order_delete.resx">
-      <DependentUpon>201704130803482_liaison_user_order_delete.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704130915315_email_rpl_id.resx">
-      <DependentUpon>201704130915315_email_rpl_id.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704130927564_supression_email.resx">
-      <DependentUpon>201704130927564_supression_email.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704130938215_Init.resx">
+      <DependentUpon>201704130938215_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
