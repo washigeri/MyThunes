@@ -24,7 +24,9 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Panier", "Index", "ShoppingCart")</li>
                     <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
+                    <li>@Html.ActionLink("Artistes", "Index", "Artists")</li>
                     <li>@Html.ActionLink("Albums", "Index", "Albums")</li>
+                    <li>@Html.ActionLink("Chansons", "Index", "Songs")</li>
                     <li>
                         @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "form-inline" }))
                         {
