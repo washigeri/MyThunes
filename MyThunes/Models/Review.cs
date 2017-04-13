@@ -22,8 +22,5 @@ namespace MyThunes.Models
         public int AlbumID { get; set; }
 
         public virtual Album Album { get; set; }
-
-        [Required, Display(Name = "Auteur")]
-        public int UserID { get; set; }
     }
 }

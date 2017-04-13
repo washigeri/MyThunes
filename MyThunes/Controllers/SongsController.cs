@@ -62,6 +62,7 @@ namespace MyThunes.Controllers
         }
 
         // GET: Songs/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.AlbumID = new SelectList(db.Albums, "ID", "Name");
@@ -73,6 +74,7 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,Name,ReleaseDate,Genre,Price,Format,AlbumID")] Song song, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
@@ -94,6 +96,7 @@ namespace MyThunes.Controllers
         }
 
         // GET: Songs/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -114,7 +117,8 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,ReleaseDate,Genre,Price,Format,Path,AlbumID")] Song song, HttpPostedFileBase file)
+        [Authorize]
+        public ActionResult Edit([Bind(Include = "ID,Name,ReleaseDate,Genre,Price,Format,AlbumID")] Song song, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -134,6 +138,7 @@ namespace MyThunes.Controllers
         }
 
         // GET: Songs/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -151,6 +156,7 @@ namespace MyThunes.Controllers
         // POST: Songs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Song song = db.Songs.Find(id);

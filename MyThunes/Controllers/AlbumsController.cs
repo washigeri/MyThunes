@@ -37,6 +37,7 @@ namespace MyThunes.Controllers
             return View(album);
         }
 
+        [Authorize]
         // GET: Albums/Create
         public ActionResult Create()
         {
@@ -49,6 +50,7 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,Name,Date,ArtistID,Genre,Price")] Album album, HttpPostedFileBase cover)
         {
             if (ModelState.IsValid)
@@ -70,6 +72,7 @@ namespace MyThunes.Controllers
         }
 
         // GET: Albums/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +93,7 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,Name,Date,ArtistID,Genre,Price")] Album album, HttpPostedFileBase cover)
         {
             if (ModelState.IsValid)
@@ -110,6 +114,7 @@ namespace MyThunes.Controllers
         }
 
         // GET: Albums/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -127,6 +132,7 @@ namespace MyThunes.Controllers
         // POST: Albums/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Album album = db.Albums.Find(id);

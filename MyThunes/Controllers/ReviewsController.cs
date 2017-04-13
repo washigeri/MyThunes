@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyThunes.Models;
+using Microsoft.AspNet.Identity;
 
 namespace MyThunes.Controllers
 {
@@ -37,9 +38,9 @@ namespace MyThunes.Controllers
         //}
 
         // GET: Reviews/Create
-        public ActionResult Create()
+        public ActionResult Create(int AlbumID)
         {
-            ViewBag.AlbumID = new SelectList(db.Albums, "ID", "Name");
+            ViewBag.AlbumID = AlbumID;
             return View("_Create");
         }
 
@@ -48,6 +49,7 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,Note,Comment,AlbumID")] Review review)
         {
             review.Date = DateTime.Today;
@@ -59,10 +61,11 @@ namespace MyThunes.Controllers
             }
 
             ViewBag.AlbumID = new SelectList(db.Albums, "ID", "Name", review.AlbumID);
-            return View(review);
+            return RedirectToAction("Details", "Albums", new { id = review.AlbumID });
         }
 
         // GET: Reviews/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,6 +86,7 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,Note,Comment,Date,AlbumID")] Review review)
         {
             if (ModelState.IsValid)
@@ -96,6 +100,7 @@ namespace MyThunes.Controllers
         }
 
         // GET: Reviews/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,6 +118,7 @@ namespace MyThunes.Controllers
         // POST: Reviews/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Review review = db.Reviews.Find(id);

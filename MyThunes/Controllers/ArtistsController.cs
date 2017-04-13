@@ -35,6 +35,7 @@ namespace MyThunes.Controllers
         }
 
         // GET: Artists/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -45,6 +46,7 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,Name")] Artist artist, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
@@ -67,6 +69,7 @@ namespace MyThunes.Controllers
         }
 
         // GET: Artists/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -86,6 +89,7 @@ namespace MyThunes.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,Name")] Artist artist, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
@@ -105,6 +109,7 @@ namespace MyThunes.Controllers
         }
 
         // GET: Artists/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -122,6 +127,7 @@ namespace MyThunes.Controllers
         // POST: Artists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Artist artist = db.Artists.Find(id);

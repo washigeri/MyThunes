@@ -54,7 +54,7 @@
             @Html.DisplayNameFor(model => model.Cover)
         </dt>
         <dd>
-            <img src="@Url.Content("/" + Model.Cover)" class="img-thumbnail" alt="Image" />
+            <img src="@Url.Content("/" + Model.Cover)" class="img-rounded" alt="Image" width="400" height="400" />
         </dd>
     </dl>
 </div>
@@ -85,7 +85,7 @@
         }
         <div class="panel-heading"> Laisser un avis...</div>
         <div class="panel-body">
-            @Html.Action("Create", "Reviews")
+            @Html.Action("Create", "Reviews", new { AlbumID = Model.ID })
         </div>
         @{int i = 1; }
         @foreach (var review in Model.Reviews)
