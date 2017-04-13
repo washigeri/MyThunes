@@ -27,7 +27,15 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Artistes", "Index", "Artists")</li>
                     <li>@Html.ActionLink("Albums", "Index", "Albums")</li>
+                    <li>
+                        @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "form-inline" }))
+                        {
+                            @Html.TextBox("searchbar", null, new { @class = "form-control mr-sm-2", @style = "width: 200px; margin-top:8px" })
+                            <button class="btn btn-outline-info my-2 my-sm-0" type="submit" style="margin-top:8px">Search</button>
+                        }
+                    </li>
                 </ul>
+                
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
