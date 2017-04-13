@@ -86,6 +86,8 @@ namespace MyThunes.Controllers
                     string path = Path.Combine(Server.MapPath("~/Uploads/Song"), fileName);
                     file.SaveAs(path);
                 }
+                song.Price = 0;
+                song.Format = "mp3";
                 db.Songs.Add(song);
                 db.SaveChanges();
                 return RedirectToAction("Index");
