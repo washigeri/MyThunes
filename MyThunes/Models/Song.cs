@@ -13,12 +13,17 @@ namespace MyThunes.Models
 
         [Key]
         public int ID { get; set; }
+        [Display(Name = "Titre")]
         public String Name { get; set; }
-        [Required, DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Required, DataType(DataType.Date), Display(Name = "Date de sortie"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
+        [Display(Name = "Genre")]
         public String Genre { get; set; }
+        [Display(Name = "Prix")]
         public Decimal Price { get; set; }
+        [Display(Name = "Format")]
         public String Format { get; set; }
+        [Display(Name = "Chemin")]
         public String Path { get; set; }
         [ForeignKey("Album")]
         public int AlbumID { get; set; }

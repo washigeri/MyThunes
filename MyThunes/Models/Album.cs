@@ -12,7 +12,7 @@ namespace MyThunes.Models
     {
         [Key]
         public int ID { get; set; }
-        [Required, Display(Name = "Nom"), StringLength(60)]
+        [Required, Display(Name = "Album"), StringLength(60)]
         public String Name { get; set; }
         [Display(Name = "Jaquette")]
         public String Cover { get; set; }
