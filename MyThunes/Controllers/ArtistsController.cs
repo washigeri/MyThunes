@@ -125,10 +125,13 @@ namespace MyThunes.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Artist artist = db.Artists.Find(id);
-            string fullPath = Path.Combine(Server.MapPath("~/Uploads/Artist"), artist.Photo.Split('/')[2]);
-            if (System.IO.File.Exists(fullPath))
+            if (artist.Photo != String.Empty)
             {
-                System.IO.File.Delete(fullPath);
+                string fullPath = Path.Combine(Server.MapPath("~/Uploads/Artist"), artist.Photo.Split('/')[2]);
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
             }
             db.Artists.Remove(artist);
             db.SaveChanges();

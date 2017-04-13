@@ -130,10 +130,14 @@ namespace MyThunes.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Album album = db.Albums.Find(id);
-            string fullPath = Path.Combine(Server.MapPath("~/Uploads/Album"), album.Cover.Split('/')[2]);
-            if (System.IO.File.Exists(fullPath))
+
+            if (album.Cover != String.Empty)
             {
-                System.IO.File.Delete(fullPath);
+                string fullPath = Path.Combine(Server.MapPath("~/Uploads/Album"), album.Cover.Split('/')[2]);
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                } 
             }
             db.Albums.Remove(album);
             db.SaveChanges();
