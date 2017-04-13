@@ -47,7 +47,7 @@ namespace MyThunes.Models
         [StringLength(24)]
         public string Phone { get; set; }
         [Required(ErrorMessage = "Email Address is required")]
-        [DisplayName("Email Address")]
+        [DisplayName("Email Address (must match the account address)")]
 
         [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",
             ErrorMessage = "Email is is not valid.")]
